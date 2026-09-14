@@ -1,0 +1,554 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy - Acesso ao Conteúdo</title>
+
+  <!-- PIXEL UTMIFY -->
+  <script>
+    window.pixelId = "69e7873e8bc0a56b01aae2b8";
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script><script async="" defer="" src="js/pixel.js"></script>
+
+  <!-- UTMIFY -->
+  <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+
+  <!-- UTM Persistence -->
+  <script>
+    (function() {
+      var UTM_KEYS = ['utm_source','utm_campaign','utm_medium','utm_content','utm_term','src','xcod','sck'];
+      var params = new URLSearchParams(window.location.search);
+      var hasUtm = false;
+      UTM_KEYS.forEach(function(k) {
+        var v = params.get(k);
+        if (v) { localStorage.setItem('utmify_' + k, v); hasUtm = true; }
+      });
+      if (!hasUtm) {
+        var restored = new URLSearchParams(window.location.search);
+        UTM_KEYS.forEach(function(k) {
+          var stored = localStorage.getItem('utmify_' + k);
+          if (stored) restored.set(k, stored);
+        });
+        var newSearch = restored.toString();
+        if (newSearch) history.replaceState({}, '', window.location.pathname + '?' + newSearch);
+      }
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body {
+      min-height: 100vh;
+      background: #0a0010;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .background {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .hero-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-img {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .botao-sobre-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    /* Botão inicial */
+    .botao-abrir {
+      background: linear-gradient(135deg, #ff6b35, #ff4444);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      font-size: 20px;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+      animation: pulse 2s infinite;
+      transition: transform 0.2s;
+    }
+    .botao-abrir:hover { transform: scale(1.05); }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5); }
+      50% { box-shadow: 0 8px 40px rgba(255, 107, 53, 0.8); }
+      100% { box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5); }
+    }
+
+    /* Carregamento */
+    .carregamento {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      color: white;
+    }
+    .carregamento h2 { font-size: 22px; }
+    .spinner {
+      width: 50px; height: 50px;
+      border: 5px solid rgba(255,255,255,0.3);
+      border-top: 5px solid #ff6b35;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Card principal */
+    .card {
+      background: rgba(255, 255, 255, 0.97);
+      border-radius: 20px;
+      padding: 30px 24px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo { width: 80px; margin-bottom: 12px; }
+    .header h1 {
+      font-size: 1.3rem;
+      color: #c0392b;
+      font-weight: 600;
+    }
+
+    .warning {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #856404;
+      margin-bottom: 14px;
+    }
+
+    p { font-size: 14px; color: #444; line-height: 1.5; margin-bottom: 12px; }
+
+    .benefits {
+      background: #f0fff4;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .benefits h2 { font-size: 15px; color: #1a5c2a; margin-bottom: 10px; }
+    .benefits li { font-size: 13px; color: #333; margin-bottom: 6px; }
+
+    .special-offer {
+      background: linear-gradient(135deg, #ff6b35, #ff4444);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .special-offer h2 { font-size: 16px; margin-bottom: 6px; }
+    .price { font-size: 15px; }
+    .price strong { font-size: 22px; font-weight: 700; }
+
+    /* Botão gerar PIX */
+    .btn-pix {
+      width: 100%;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      border: none;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      transition: opacity 0.2s;
+    }
+    .btn-pix:hover { opacity: 0.9; }
+    .btn-pix:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* Form de email */
+    #emailForm { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+    #emailForm input {
+      padding: 12px;
+      border: 1.5px solid #ddd;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+    }
+    #emailForm input:focus { outline: none; border-color: #ff6b35; }
+
+    /* Área PIX */
+    #pixArea {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    #pixArea p { font-size: 13px; color: #555; margin: 0; }
+    #pixQrImg {
+      width: 180px; height: 180px;
+      border: 2px solid #eee;
+      border-radius: 10px;
+    }
+    #pixCodeText {
+      width: 100%; font-size: 11px; padding: 8px;
+      border: 1px solid #ccc; border-radius: 8px;
+      resize: none; height: 60px; font-family: monospace;
+    }
+    .btn-copiar {
+      background: #ff6b35; color: white; border: none;
+      border-radius: 8px; padding: 10px 24px;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      width: 100%;
+    }
+    #pixStatus { font-size: 13px; color: #666; }
+
+    /* Sucesso */
+    #pixSucesso {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+    #pixSucesso p { margin: 0; }
+
+    /* Pular */
+    .btn-pular {
+      background: none;
+      border: none;
+      color: #aaa;
+      font-size: 13px;
+      cursor: pointer;
+      text-decoration: underline;
+      display: block;
+      text-align: center;
+      margin-top: 4px;
+    }
+    .btn-pular:hover { color: #666; }
+
+    @media (max-width: 480px) {
+      .card { padding: 22px 16px; }
+      .header h1 { font-size: 1.1rem; }
+    }
+  </style>
+
+  <!-- Back Redirect -->
+  <script>
+    (function() {
+      var backUrl = new URL('../back/index.html', window.location.href).href;
+      var params = new URLSearchParams(window.location.search);
+      var sep = backUrl.indexOf('?') > 0 ? '&' : '?';
+      var qs = params.toString();
+      if (qs) backUrl = backUrl + sep + qs;
+      history.pushState(null, '', window.location.href);
+      history.pushState(null, '', window.location.href);
+      history.pushState(null, '', window.location.href);
+      window.addEventListener('popstate', function() {
+        window.location.href = backUrl;
+      });
+    })();
+  </script>
+
+</head>
+<body>
+  <div class="background">
+    <div class="container">
+
+      <!-- Hero: imagem com botão por cima -->
+      <div id="heroWrapper" class="hero-wrapper" style="display: flex;">
+        <img id="heroImg" class="hero-img" src="images/bg.jpg" alt="">
+        <button id="botaoAcessar" class="botao-abrir botao-sobre-img" onclick="abrirConteudo()">🔓 Abrir Conteúdo</button>
+      </div>
+
+      <!-- Carregamento -->
+      <div id="carregamento" class="carregamento" style="display:none;margin-top:16px;">
+        <div class="spinner"></div>
+        <h2>Abrindo...</h2>
+      </div>
+
+      <!-- Card PIX -->
+      <div id="falhaSeguranca" class="card" style="display:none;margin-top:16px;">
+        <div class="header">
+          <img src="images/flryqk30g0a8u4cgr3wugvqou.png" alt="Privacy Logo" class="logo">
+          <h1>⚠ Falha de Segurança Detectada!</h1>
+        </div>
+
+        <p class="warning">Por medidas de segurança, o envio do seu conteúdo foi bloqueado.</p>
+        <p>Para garantir sua privacidade e evitar vazamentos, o acesso agora só pode ser feito pelo aplicativo oficial <strong>Privacy</strong>.</p>
+
+        <div class="benefits">
+          <h2>🔒 Benefícios Exclusivos do Aplicativo Privacy:</h2>
+          <ul style="list-style:none; padding-left:0;">
+            <li>✅ <strong>Acesso 100% seguro</strong> e anonimato garantido</li>
+            <li>✅ <strong>Proteção avançada</strong> contra vazamento de dados</li>
+            <li>✅ <strong>Suporte VIP</strong> para usuários premium</li>
+            <li>✅ <strong>Conteúdo exclusivo</strong> disponível somente no app</li>
+          </ul>
+        </div>
+
+        <div class="special-offer">
+          <h2>🎁 Ative a Proteção Agora</h2>
+          <p class="price">🎉 Oferta Especial: Apenas <strong>R$ 5,50</strong></p>
+        </div>
+
+        <!-- Formulário e PIX -->
+        <div id="emailForm">
+          <input type="text" id="nomeInput" placeholder="Seu nome completo">
+          <input type="email" id="emailInput" placeholder="Seu e-mail">
+          <button class="btn-pix" id="btnGerarPix" onclick="gerarPix()">
+            💰 PAGAR R$ 5,50 VIA PIX
+          </button>
+        </div>
+
+        <div id="pixArea">
+          <p style="font-weight:600;font-size:14px;color:#333;">Escaneie o QR Code ou copie o código PIX:</p>
+          <img id="pixQrImg" src="" alt="QR Code PIX">
+          <textarea id="pixCodeText" readonly=""></textarea>
+          <button class="btn-copiar" onclick="copiarPix()">📋 COPIAR CÓDIGO PIX</button>
+          <p id="pixStatus">⏳ Aguardando pagamento...</p>
+        </div>
+
+        <div id="pixSucesso">
+          <p style="font-size:36px;">✅</p>
+          <p style="font-weight:700;font-size:17px;color:#1a5c2a;">Pagamento confirmado!</p>
+          <p style="font-size:13px;color:#555;margin-bottom:16px;">Seu acesso foi liberado! Entre pelo link abaixo:</p>
+          <img src="images/Telegram_logo.svg" alt="Telegram" style="width:64px;height:64px;margin-bottom:8px;">
+          <a href="https://t.me/+0_KdIvRPm4Y0M2Nh" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#2AABEE,#229ED9);color:white;font-weight:700;font-size:15px;padding:14px 28px;border-radius:12px;text-decoration:none;margin-bottom:6px;">
+            📲 Entrar no Telegram
+          </a>
+          <p style="font-size:11px;color:#aaa;">Clique no botão acima para acessar o grupo</p>
+        </div>
+
+        <button class="btn-pular" onclick="pularEtapa()">Pular esta etapa →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://qqgeppzhhpvmdxzctngj.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxZ2VwcHpoaHB2bWR4emN0bmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyMTQ2MzcsImV4cCI6MjA5MDc5MDYzN30.3PxnXi15bVJ_5x733nUXcUjlgPAIGsGBpAXkqtASRdg';
+
+    // ========== VERIFICAÇÃO DE PAGAMENTO ANTERIOR (up1) ==========
+    (function verificarPagamentoUp1() {
+      var identifier = localStorage.getItem('pix_nicolle_up1_identifier');
+      var jaDisparado = localStorage.getItem('pix_nicolle_up1_purchase_fired');
+      if (!identifier || jaDisparado) return;
+      fetch(SUPABASE_URL + '/functions/v1/syncpay-status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
+        body: JSON.stringify({ identifier: identifier })
+      }).then(function(r){ return r.json(); }).then(function(data) {
+        var st = ((data && data.data && data.data.status) || (data && data.status) || '').toLowerCase();
+        if (['completed','pago','success','paid','approved','paid_out','paidout'].includes(st)) {
+          localStorage.setItem('pix_nicolle_up1_purchase_fired', '1');
+          (function firePixel(value, txId, attempts) {
+            if (window.PixelManager && typeof window.PixelManager.track === 'function') {
+              try { window.PixelManager.track('Purchase', { value: value, currency: 'BRL', transaction_id: txId }); } catch(e) {}
+            } else if (attempts > 0) { setTimeout(function() { firePixel(value, txId, attempts - 1); }, 500); }
+          })(7.35, identifier, 20);
+        }
+      }).catch(function(){});
+    })();
+
+    // ---- Helpers UTM ----
+    function getUtm(k) {
+      return new URLSearchParams(window.location.search).get(k)
+        || localStorage.getItem('utmify_' + k)
+        || undefined;
+    }
+
+    function redirectWithParams(baseUrl) {
+      const url = new URL(baseUrl, window.location.href);
+      ['utm_source','utm_campaign','utm_medium','utm_content','utm_term','src','xcod','sck'].forEach(k => {
+        const v = getUtm(k);
+        if (v) url.searchParams.set(k, v);
+      });
+      window.location.href = url.toString();
+    }
+
+    // ---- Fake data ----
+    function gerarCpfFake() {
+      const n = () => Math.floor(Math.random() * 9);
+      let nums = [n(),n(),n(),n(),n(),n(),n(),n(),n()];
+      let s = nums.reduce((a,b,i) => a+b*(10-i), 0); let d1 = (s*10)%11; if(d1>=10)d1=0;
+      s = nums.reduce((a,b,i) => a+b*(11-i), 0)+d1*2; let d2=(s*10)%11; if(d2>=10)d2=0;
+      return nums.concat([d1,d2]).join('');
+    }
+    function gerarNomeFake() {
+      const p=['Ana','Carlos','Fernanda','Lucas','Juliana','Rodrigo','Patricia','Marcos'];
+      const s=['Silva','Santos','Oliveira','Souza','Lima','Ferreira','Costa','Pereira'];
+      return p[Math.floor(Math.random()*p.length)]+' '+s[Math.floor(Math.random()*s.length)];
+    }
+    function gerarTelFake() {
+      const ddds=['11','21','31','41','51'];
+      return ddds[Math.floor(Math.random()*ddds.length)]+'9'+String(Math.floor(Math.random()*100000000)).padStart(8,'0');
+    }
+
+    // Mostra o wrapper (imagem + botão) ao carregar a página
+    window.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('heroWrapper').style.display = 'flex';
+    });
+
+    // ---- Fluxo de abertura ----
+    function abrirConteudo() {
+      document.getElementById('heroWrapper').style.display = 'none';
+      document.getElementById('carregamento').style.display = 'flex';
+      setTimeout(() => {
+        document.getElementById('carregamento').style.display = 'none';
+        document.getElementById('falhaSeguranca').style.display = 'block';
+      }, 3000);
+    }
+
+    // ---- PIX ----
+    let pixPollInterval = null;
+
+    function copiarPix() {
+      navigator.clipboard.writeText(document.getElementById('pixCodeText').value)
+        .then(() => alert('Código PIX copiado!'));
+    }
+
+    function iniciarPolling(identifier) {
+      if (pixPollInterval) clearInterval(pixPollInterval);
+      pixPollInterval = setInterval(async () => {
+        try {
+          const res = await fetch(SUPABASE_URL + '/functions/v1/syncpay-status', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
+            body: JSON.stringify({ identifier })
+          });
+          const data = await res.json();
+          const st = ((data?.data?.status) || (data?.status) || '').toLowerCase();
+          if (['completed','pago','success','paid','approved','paid_out','paidout'].includes(st)) {
+            clearInterval(pixPollInterval);
+            (function firePixel(value, txId, attempts) {
+              if (window.PixelManager && typeof window.PixelManager.track === 'function') {
+                try { window.PixelManager.track('Purchase', { value: value, currency: 'BRL', transaction_id: txId }); } catch(e) {}
+              } else if (attempts > 0) {
+                setTimeout(function() { firePixel(value, txId, attempts - 1); }, 500);
+              }
+            })(5.50, identifier, 10);
+            document.getElementById('pixArea').style.display = 'none';
+            document.getElementById('pixSucesso').style.display = 'flex';
+            setTimeout(() => {
+              window.open('https://t.me/+0_KdIvRPm4Y0M2Nh', '_blank');
+            }, 2000);
+          }
+        } catch(e) { console.error('Poll error:', e); }
+      }, 5000);
+    }
+
+    async function gerarPix() {
+      const nome = document.getElementById('nomeInput').value.trim();
+      const email = document.getElementById('emailInput').value.trim();
+      if (!nome || nome.split(' ').length < 2) { alert('Informe seu nome completo.'); return; }
+      if (!email || !email.includes('@')) { alert('Informe um e-mail válido.'); return; }
+
+      const btn = document.getElementById('btnGerarPix');
+      btn.textContent = 'Gerando PIX...';
+      btn.disabled = true;
+
+      const nomeFinal = nome.split(' ').length >= 2 ? nome : gerarNomeFake();
+
+      const __metaCookie = n => { const m = document.cookie.match(new RegExp('(^|; )'+n+'=([^;]+)')); return m?decodeURIComponent(m[2]):null; };
+      try {
+        const res = await fetch(SUPABASE_URL + '/functions/v1/syncpay-pix', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
+          body: JSON.stringify({
+            amount: 5.50,
+            name: nomeFinal,
+            cpf: gerarCpfFake(),
+            email: email,
+            phone: gerarTelFake(),
+            plan: 'up2-nicolle',
+            utm_source: getUtm('utm_source'), utm_medium: getUtm('utm_medium'),
+            utm_campaign: getUtm('utm_campaign'), utm_content: getUtm('utm_content'),
+            utm_term: getUtm('utm_term'), src: getUtm('src'),
+            xcod: getUtm('xcod'), sck: getUtm('sck'),
+            fbp: __metaCookie('_fbp'), fbc: __metaCookie('_fbc'),
+            user_agent: navigator.userAgent, source_url: window.location.href
+          })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          btn.textContent = '💰 PAGAR R$ 5,50 VIA PIX';
+          btn.disabled = false;
+          alert(data.message || 'Erro ao gerar PIX. Tente novamente.');
+          return;
+        }
+
+        const pixCode = data.pix_code || data.qr_code || data.emv || '';
+        const qrUrl   = data.qr_code_url
+          || (pixCode ? `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(pixCode)}` : '');
+        const identifier = data.identifier || data.transaction_id || data.id || '';
+        if (identifier) { localStorage.setItem('pix_nicolle_up2_identifier', identifier); localStorage.removeItem('pix_nicolle_up2_purchase_fired'); }
+
+        document.getElementById('pixQrImg').src = qrUrl;
+        document.getElementById('pixCodeText').value = pixCode;
+        document.getElementById('emailForm').style.display = 'none';
+        document.getElementById('pixArea').style.display = 'flex';
+
+        if (identifier) iniciarPolling(identifier);
+
+      } catch(e) {
+        btn.textContent = '💰 PAGAR R$ 5,50 VIA PIX';
+        btn.disabled = false;
+        alert('Erro de conexão. Tente novamente.');
+      }
+    }
+
+    function pularEtapa() {
+      window.open('https://t.me/+0_KdIvRPm4Y0M2Nh', '_blank');
+    }
+  </script>
+
+
+</body></html>

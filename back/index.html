@@ -1,0 +1,639 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Privacy Oficial</title>
+  <link rel="icon" type="image/png" href="images/banner.png">
+
+  <!-- PIXEL UTMIFY -->
+  <script>
+    window.pixelId = "69e7873e8bc0a56b01aae2b8";
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script><script async="" defer="" src="js/pixel.js"></script>
+  <!-- UTMIFY -->
+  <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+  <!-- UTM Persistence -->
+  <script>
+    (function() {
+      var UTM_KEYS = ['utm_source','utm_campaign','utm_medium','utm_content','utm_term','src','xcod','sck'];
+      var params = new URLSearchParams(window.location.search);
+      UTM_KEYS.forEach(function(k) {
+        var v = params.get(k);
+        if (v) localStorage.setItem('utmify_' + k, v);
+      });
+    })();
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    .checkout-container {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 0 40px 0;
+    }
+
+    /* Banner */
+    .checkout-banner {
+      width: 100%;
+      overflow: hidden;
+    }
+    .checkout-banner img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Card genérico */
+    .ck-card {
+      background: #fff;
+      border-radius: 12px;
+      margin: 14px 16px;
+      padding: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .ck-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Resumo do pedido */
+    .order-summary {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px;
+      background: #f9fafb;
+      border-radius: 10px;
+    }
+    .order-summary img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ff6b3d;
+    }
+    .order-summary .order-info h4 {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .order-summary .order-price {
+      color: #ff6b3d;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      background: #fafafa;
+    }
+    .form-group input:focus {
+      border-color: #ff6b3d;
+      background: #fff;
+    }
+
+    /* Ofertas */
+    .oferta-title {
+      text-align: center;
+      color: #ff6b3d;
+      font-weight: 700;
+      font-size: 14px;
+      margin: 18px 0 12px;
+    }
+    .oferta-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border: 1.5px solid #eee;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .oferta-item:hover {
+      border-color: #ff6b3d;
+      background: #fff7f3;
+    }
+    .oferta-item.selected {
+      border-color: #ff6b3d;
+      background: #fff7f3;
+    }
+    .oferta-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #ff6b3d;
+      flex-shrink: 0;
+    }
+    .oferta-item img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .oferta-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .oferta-info h5 {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .oferta-info p {
+      font-size: 11px;
+      color: #888;
+    }
+    .oferta-prices {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .oferta-prices .old-price {
+      font-size: 11px;
+      color: #aaa;
+      text-decoration: line-through;
+    }
+    .oferta-prices .new-price {
+      font-size: 14px;
+      color: #ff6b3d;
+      font-weight: 700;
+    }
+
+    /* Pagamento */
+    .pix-method {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #ff6b3d;
+      border-radius: 10px;
+      background: #fff7f3;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ff6b3d;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .payment-info {
+      background: #f9fafb;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+    .payment-info .payment-value {
+      color: #ff6b3d;
+      font-weight: 700;
+    }
+
+    /* Botão gerar PIX */
+    .btn-gerar-pix {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(180deg, #ff7a1a 0%, #ff6b3d 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(255, 107, 61, 0.3);
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-gerar-pix::before {
+      content: "";
+      position: absolute;
+      top: 0; left: -60%;
+      width: 40%; height: 100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+      transform: skewX(-20deg);
+      animation: shimmer 2.4s infinite;
+    }
+    @keyframes shimmer { 0% { left: -60%; } 100% { left: 120%; } }
+    .btn-gerar-pix:hover { box-shadow: 0 12px 28px rgba(255, 107, 61, 0.4); transform: translateY(-1px); }
+    .btn-gerar-pix:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* Seguro */
+    .secure-badge {
+      text-align: center;
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* QR Area */
+    .qr-area {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+    }
+    .qr-area img {
+      width: 200px;
+      height: 200px;
+      border: 2px solid #eee;
+      border-radius: 12px;
+    }
+    .qr-area textarea {
+      width: 100%;
+      font-size: 11px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      resize: none;
+      height: 60px;
+      font-family: monospace;
+    }
+    .btn-copiar {
+      width: 100%;
+      padding: 12px;
+      background: #ff6b3d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+    .status-msg {
+      font-size: 13px;
+      color: #555;
+    }
+    .pix-status-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ff6b3d;
+      animation: blink 1.2s infinite;
+      margin-right: 6px;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .timer-text {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    /* Sucesso */
+    .sucesso-area {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+    }
+
+    /* Spinner */
+    .spinner {
+      width: 20px; height: 20px;
+      border: 3px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="checkout-container">
+    <!-- Banner -->
+    <div class="checkout-banner">
+      <img src="images/banner.png" alt="Privacy - Compra 100% Segura">
+    </div>
+
+    <!-- Resumo do pedido -->
+    <div class="ck-card">
+      <h3>📋 Resumo do pedido</h3>
+      <div class="order-summary">
+        <img src="images/perfil.jpg" alt="Privacy Vivi Noronha">
+        <div class="order-info">
+          <h4>Privacy Vivi Noronha OFICIAL</h4>
+          <span class="order-price" id="orderPrice">R$ 5,90</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Identificação -->
+    <div class="ck-card">
+      <h3>👤 Identificação</h3>
+
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" id="ckEmail" placeholder="email@email.com">
+      </div>
+
+      <div class="form-group">
+        <label>Nome Completo</label>
+        <input type="text" id="ckName" placeholder="Nome e Sobrenome">
+      </div>
+
+      <!-- Ofertas especiais -->
+      <div class="oferta-title">🔥 Oferta exclusiva para você!</div>
+
+      <label class="oferta-item" for="oferta1">
+        <input type="checkbox" id="oferta1" data-price="4.90">
+        <img src="images/oferta1.jpg" alt="Privacy Kamylinha">
+        <div class="oferta-info">
+          <h5>Privacy Kamylinha OFICIAL</h5>
+          <p>Desconto Imperdível!</p>
+        </div>
+        <div class="oferta-prices">
+          <span class="new-price">R$ 4,90</span>
+        </div>
+      </label>
+
+      <label class="oferta-item" for="oferta2">
+        <input type="checkbox" id="oferta2" data-price="4.90">
+        <img src="images/oferta2.jpg" alt="Privacy Mel Maia">
+        <div class="oferta-info">
+          <h5>Privacy Mel Maia OFICIAL</h5>
+          <p>Desconto Imperdível!</p>
+        </div>
+        <div class="oferta-prices">
+          <span class="new-price">R$ 4,90</span>
+        </div>
+      </label>
+
+      <label class="oferta-item" for="oferta3">
+        <input type="checkbox" id="oferta3" data-price="4.90">
+        <img src="images/oferta3.jpg" alt="Privacy Juliana Bonde">
+        <div class="oferta-info">
+          <h5>Privacy Juliana Bonde</h5>
+          <p>Desconto Imperdível!</p>
+        </div>
+        <div class="oferta-prices">
+          <span class="new-price">R$ 4,90</span>
+        </div>
+      </label>
+
+      <label class="oferta-item" for="oferta4">
+        <input type="checkbox" id="oferta4" data-price="4.90">
+        <img src="images/oferta4.jpg" alt="Privacy Nicolle Caroline">
+        <div class="oferta-info">
+          <h5>Privacy Nicolle Caroline</h5>
+          <p>Desconto Imperdível!</p>
+        </div>
+        <div class="oferta-prices">
+          <span class="new-price">R$ 4,90</span>
+        </div>
+      </label>
+
+      <label class="oferta-item" for="oferta5">
+        <input type="checkbox" id="oferta5" data-price="4.90">
+        <img src="images/oferta5.jpg" alt="Privacy Mc Melody">
+        <div class="oferta-info">
+          <h5>Privacy Mc Melody OFICIAL</h5>
+          <p>Desconto Imperdível!</p>
+        </div>
+        <div class="oferta-prices">
+          <span class="new-price">R$ 4,90</span>
+        </div>
+      </label>
+    </div>
+
+    <!-- Forma de pagamento -->
+    <div class="ck-card">
+      <h3>💳 Pagamento</h3>
+      <div class="pix-method">
+        <svg width="24" height="24" viewBox="0 0 512 512" fill="#ff6b3d"><path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C344.9 374.9 344.9 384.1 339.5 389.5L searching 369.5 462.5C364.1 467.9 354.9 467.9 349.5 462.5L searching 292.5 409.5..."></path></svg>
+        Pagamento via Pix
+      </div>
+
+      <div class="payment-info">
+        Aprovação imediata.<br>
+        Pagamento somente à vista: <span class="payment-value" id="paymentTotal">R$ 5,90</span>
+      </div>
+
+      <!-- Form Area -->
+      <div id="ckFormArea">
+        <button class="btn-gerar-pix" id="btnGerarPix" onclick="gerarPixBack()">
+          GERAR PIX
+        </button>
+      </div>
+
+      <!-- QR Area -->
+      <div class="qr-area" id="ckQrArea">
+        <p style="font-weight:600;font-size:14px;">Escaneie o QR Code ou copie o código PIX:</p>
+        <img id="ckQrImg" src="" alt="QR Code">
+        <textarea id="ckPixCode" readonly=""></textarea>
+        <button class="btn-copiar" onclick="copiarPixBack()">📋 COPIAR CÓDIGO PIX</button>
+        <p class="status-msg" id="ckStatusMsg"><span class="pix-status-dot"></span> Aguardando pagamento...</p>
+        <p class="timer-text">O QR Code expira em <span id="timer">15:00</span></p>
+      </div>
+
+      <!-- Sucesso Area -->
+      <div class="sucesso-area" id="ckSucessoArea">
+        <p style="font-size:48px;">🎉</p>
+        <p style="font-weight:800;font-size:18px;color:#047857;">Pagamento confirmado!</p>
+        <p style="font-size:13px;color:#555;">Redirecionando para o próximo passo...</p>
+      </div>
+    </div>
+
+    <div class="secure-badge">🔒 Pagamento 100% seguro</div>
+
+    <p style="text-align:center;font-size:11px;color:#aaa;margin:12px 16px 0;line-height:1.5;">
+      Ao finalizar o pagamento você concorda com nossos termos de uso e privacidade.
+      Seus dados serão armazenados de maneira completamente segura.
+    </p>
+  </div>
+
+  <script>
+    var BASE_PRICE = 5.90;
+    var _pollInterval = null;
+    var _timerInterval = null;
+
+    var SUPABASE_URL = 'https://qqgeppzhhpvmdxzctngj.supabase.co';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxZ2VwcHpoaHB2bWR4emN0bmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyMTQ2MzcsImV4cCI6MjA5MDc5MDYzN30.3PxnXi15bVJ_5x733nUXcUjlgPAIGsGBpAXkqtASRdg';
+
+    function calcTotal() {
+      var total = BASE_PRICE;
+      document.querySelectorAll('.oferta-item input[type=checkbox]:checked').forEach(function(cb) {
+        total += parseFloat(cb.dataset.price);
+      });
+      return Math.round(total * 100) / 100;
+    }
+
+    function updatePrices() {
+      var total = calcTotal();
+      document.getElementById('paymentTotal').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+    }
+
+    document.querySelectorAll('.oferta-item input[type=checkbox]').forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        this.closest('.oferta-item').classList.toggle('selected', this.checked);
+        updatePrices();
+      });
+    });
+
+    function gerarCpfFake() {
+      var n = function() { return Math.floor(Math.random()*9); };
+      var nums=[n(),n(),n(),n(),n(),n(),n(),n(),n()];
+      var s=nums.reduce(function(a,b,i){return a+b*(10-i);},0); var d1=(s*10)%11; if(d1>=10)d1=0;
+      s=nums.reduce(function(a,b,i){return a+b*(11-i);},0)+d1*2; var d2=(s*10)%11; if(d2>=10)d2=0;
+      return nums.concat([d1,d2]).join('');
+    }
+
+    function getUtm(k) {
+      return new URLSearchParams(window.location.search).get(k) || localStorage.getItem('utmify_'+k) || undefined;
+    }
+
+    function copiarPixBack() {
+      navigator.clipboard.writeText(document.getElementById('ckPixCode').value).then(function() {
+        var btn = document.querySelector('.btn-copiar');
+        btn.textContent = '✅ Copiado!';
+        setTimeout(function() { btn.textContent = '📋 COPIAR CÓDIGO PIX'; }, 2000);
+      });
+    }
+
+    function startTimer(seconds) {
+      clearInterval(_timerInterval);
+      var remaining = seconds;
+      var el = document.getElementById('timer');
+      _timerInterval = setInterval(function() {
+        remaining--;
+        var m = Math.floor(remaining / 60);
+        var s = remaining % 60;
+        el.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+        if (remaining <= 0) { clearInterval(_timerInterval); el.textContent = '00:00'; }
+      }, 1000);
+    }
+
+    function iniciarPolling(identifier, totalAmount) {
+      if (_pollInterval) clearInterval(_pollInterval);
+      _pollInterval = setInterval(async function() {
+        try {
+          var res = await fetch(SUPABASE_URL + '/functions/v1/syncpay-status', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
+            body: JSON.stringify({ identifier: identifier })
+          });
+          var data = await res.json();
+          var st = ((data && data.data && data.data.status) || (data && data.status) || '').toLowerCase();
+          if (['completed','pago','success','paid','approved','paid_out','paidout'].includes(st)) {
+            clearInterval(_pollInterval);
+            clearInterval(_timerInterval);
+            // Fire pixel Purchase
+            (function firePixel(value, txId, attempts) {
+              if (window.PixelManager && typeof window.PixelManager.track === 'function') {
+                try { window.PixelManager.track('Purchase', { value: value, currency: 'BRL', transaction_id: txId }); } catch(e) {}
+              } else if (attempts > 0) { setTimeout(function() { firePixel(value, txId, attempts-1); }, 500); }
+            })(totalAmount, identifier, 10);
+            localStorage.setItem('pix_back_amount', String(totalAmount));
+            document.getElementById('ckQrArea').style.display = 'none';
+            document.getElementById('ckSucessoArea').style.display = 'flex';
+            setTimeout(function() {
+              var url = new URL('../up1/index.html', window.location.href);
+              ['utm_source','utm_campaign','utm_medium','utm_content','utm_term','src','xcod','sck'].forEach(function(k) {
+                var v = getUtm(k); if (v) url.searchParams.set(k, v);
+              });
+              window.location.href = url.toString();
+            }, 2500);
+          }
+        } catch(e) { console.error('Poll error:', e); }
+      }, 5000);
+    }
+
+    async function gerarPixBack() {
+      var email = document.getElementById('ckEmail').value.trim();
+      var name = document.getElementById('ckName').value.trim();
+      if (!email || !email.includes('@')) { alert('Informe um e-mail válido.'); return; }
+      if (!name || name.length < 3) { alert('Informe seu nome completo.'); return; }
+
+      var totalAmount = calcTotal();
+
+      var btn = document.getElementById('btnGerarPix');
+      btn.innerHTML = '<span class="spinner"></span> Gerando PIX...'; btn.disabled = true;
+
+      function __metaCookie(n){var m=document.cookie.match(new RegExp('(^|; )'+n+'=([^;]+)'));return m?decodeURIComponent(m[2]):null;}
+      try {
+        var res = await fetch(SUPABASE_URL + '/functions/v1/syncpay-pix', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+          },
+          body: JSON.stringify({
+            amount: totalAmount,
+            name: name,
+            cpf: gerarCpfFake(),
+            email: email,
+            plan: 'nicolle-' + totalAmount,
+            utm_source: getUtm('utm_source'), utm_medium: getUtm('utm_medium'),
+            utm_campaign: getUtm('utm_campaign'), utm_content: getUtm('utm_content'),
+            utm_term: getUtm('utm_term'), src: getUtm('src'),
+            fbp: __metaCookie('_fbp'), fbc: __metaCookie('_fbc'),
+            user_agent: navigator.userAgent, source_url: window.location.href
+          })
+        });
+        var data = await res.json();
+        if (!res.ok) { btn.textContent = 'GERAR PIX'; btn.disabled = false; alert(data.message || 'Erro ao gerar PIX.'); return; }
+        var pixCode = data.pix_code || data.qr_code || data.emv || '';
+        var qrUrl = data.qr_code_url || (pixCode ? 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(pixCode) : '');
+        var identifier = data.identifier || data.transaction_id || data.id || '';
+        document.getElementById('ckQrImg').src = qrUrl;
+        document.getElementById('ckPixCode').value = pixCode;
+        document.getElementById('ckFormArea').style.display = 'none';
+        document.getElementById('ckQrArea').style.display = 'flex';
+        startTimer(15 * 60);
+        if (identifier) iniciarPolling(identifier, totalAmount);
+      } catch(e) {
+        btn.textContent = 'GERAR PIX'; btn.disabled = false;
+        alert('Erro de conexão. Tente novamente.');
+      }
+    }
+  </script>
+
+
+</body></html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <!-- PIXEL UTMIFY -->
+    <script>
+        window.pixelId = "69e7873e8bc0a56b01aae2b8";
+        var a = document.createElement("script");
+        a.setAttribute("async", "");
+        a.setAttribute("defer", "");
+        a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+        document.head.appendChild(a);
+    </script><script async="" defer="" src="js/pixel.js"></script>
+    <!-- UTMIFY -->
+    <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+    <script>
+      (function() {
+        var UTM_KEYS = ['utm_source','utm_campaign','utm_medium','utm_content','utm_term','src','xcod','sck'];
+        var params = new URLSearchParams(window.location.search);
+        var hasUtm = false;
+        UTM_KEYS.forEach(function(k) {
+          var v = params.get(k);
+          if (v) { localStorage.setItem('utmify_' + k, v); hasUtm = true; }
+        });
+        if (!hasUtm) {
+          var restored = new URLSearchParams(window.location.search);
+          UTM_KEYS.forEach(function(k) {
+            var stored = localStorage.getItem('utmify_' + k);
+            if (stored) restored.set(k, stored);
+          });
+          var newSearch = restored.toString();
+          if (newSearch) history.replaceState({}, '', window.location.pathname + '?' + newSearch);
+        }
+      })();
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+      * { padding:0; margin:0; box-sizing:border-box; font-family:"Poppins",sans-serif; text-decoration:none !important; }
+      body { display:flex; flex-direction:column; justify-content:space-between; min-height:100vh; }
+      .fade-in { opacity:1 !important; }
+      footer { background-color:white; padding:20px; width:100%; gap:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; border-top:1px solid rgba(0,0,0,0.2); margin-top:5px; }
+      footer img { width:120px; }
+      footer p { color:#000; font-size:15px; }
+      header { width:100%; align-items:center; justify-content:center; display:flex; flex-direction:row; padding:20px; box-shadow:-1px 29px 71px -31px rgba(133,133,133,0.89); }
+      header img { width:287px; height:61px; }
+      .cta { display:flex; flex-direction:column; gap:15px; font-size:20px; font-weight:bold; align-items:center; padding:40px; text-align:center; }
+      .cta img { width:130px; height:130px; }
+      .cta3 { display:flex; flex-direction:column; gap:20px; font-size:18px; font-weight:500; text-align:center; align-items:center; }
+      #setars { font-size:20px; }
+      #setars b { color:green !important; }
+      b { color:#CB0033; }
+      .cta4 { display:flex; flex-direction:column; text-align:center; align-items:center; padding-top:15px; }
+      #sends { cursor:pointer; padding:15px 30px; display:flex; align-items:center; justify-content:center; color:white; background-color:#CD992B; max-width:40%; border-radius:10px; font-weight:700; margin-top:12px; margin-bottom:30px; }
+      #popoup { display:flex; visibility:hidden; flex-direction:column !important; min-width:100vw !important; height:100vh !important; position:fixed !important; left:0 !important; align-items:center; justify-content:center; top:0 !important; opacity:0; transition:opacity 0.5s ease-in-out; background-color:rgba(0,0,0,0.849); z-index:90; }
+      .popoupcontent { background-color:white; border-radius:10px; width:460px; padding:25px; display:flex; flex-direction:column; gap:15px; align-items:center; }
+      .popoupcontent img { width:47px; height:47px; }
+      .popoupcontent h1 { color:#757677; font-weight:700; font-size:25px; text-align:center; }
+      .row { display:flex; flex-direction:row; gap:10px; margin-bottom:8px !important; align-items:center !important; }
+      .popoupcontent p { text-align:center; font-weight:600; line-height:1.4; font-size:16px; }
+      .contente { display:none; flex-direction:column; gap:12px; text-align:center; transition:all 0.5s ease; }
+      .headlineectapopoup { display:flex; flex-direction:column; gap:2px; padding-bottom:15px; justify-content:center; align-items:center; }
+      .headlineectapopoup p { font-weight:400; color:#757677; }
+      .headlineectapopoup h1 { font-weight:800; color:#333; font-size:18px; }
+      #naomostrardeinicio { display:none; }
+      #carregandodadosSs { display:none; font-size:25px; color:#CD992B !important; }
+      .loading { font-weight:700; width:100%; display:flex; flex-direction:column; gap:3px; text-align:center; margin-top:-20px; transition:all 0.5s ease; }
+      .progresseBar { height:20px; margin-top:-25px; background-color:#e0e0e0; border-radius:999px; }
+      .progress { background-color:#CD992B; height:100%; width:0%; border-radius:999px; transition:width 0.5s ease; }
+      #buttonClick { background-color:#FF6501; color:white; font-family:"Poppins"; padding:7px 15px !important; border-radius:10px !important; border:none !important; font-size:18px !important; font-weight:600; cursor:pointer; }
+      @media (max-width:700px) {
+        #sends { font-size:18px; padding:15px; width:100% !important; margin-bottom:25px; }
+        .cta img { width:100px; height:100px; }
+        .popoupcontent { width:90% !important; min-width:310px !important; padding:25px; }
+        header { flex-direction:column !important; }
+        header img { width:211px; height:41px; }
+        footer p { font-size:12px; text-align:center; }
+      }
+    </style>
+    <title>VERIFICAÇÃO</title>
+
+  <!-- Back Redirect -->
+  <script>
+    (function() {
+      var backUrl = new URL('../back/index.html', window.location.href).href;
+      var params = new URLSearchParams(window.location.search);
+      var sep = backUrl.indexOf('?') > 0 ? '&' : '?';
+      var qs = params.toString();
+      if (qs) backUrl = backUrl + sep + qs;
+      history.pushState(null, '', window.location.href);
+      history.pushState(null, '', window.location.href);
+      history.pushState(null, '', window.location.href);
+      window.addEventListener('popstate', function() {
+        window.location.href = backUrl;
+      });
+    })();
+  </script>
+
+</head>
+<body>
+    <header>
+        <img src="images/correios2.png" alt="">
+    </header>
+
+    <div class="cta">
+        <img src="images/pngtree-check-icon-approval-okay-ok-vector-png-image_19333398.png" alt="">
+        <p>Valide Seu Acesso ao Conteúdo Privado:</p>
+    </div>
+
+    <div class="cta3">
+        <p id="setar">Carregando...</p>
+        <p id="setars">O acesso ao conteúdo será liberado imediatamente após a confirmação.</p>
+    </div>
+
+    <div class="cta4">
+        <span id="sends">ACESSAR CONTEÚDO</span>
+    </div>
+
+    <div id="popoup">
+        <div class="popoupcontent">
+            <div class="row">
+                <img id="naomostrardeinicio" src="images/amarelo.png" alt="">
+                <div class="headlineectapopoup">
+                    <h1 id="carregandodadoss">Validando seu acesso ao conteúdo privado...</h1>
+                    <p id="esconderdepois">Por favor aguarde</p>
+                </div>
+                <h1 id="carregandodadosSs">Proteção de conteúdo obrigatória</h1>
+            </div>
+            <div class="loading">
+                <br>
+                <div class="progresseBar"><div class="progress"></div></div>
+            </div>
+            <div class="contente">
+                <p>
+                    Para garantir a segurança e exclusividade do conteúdo fornecido, é necessário realizar a confirmação de proteção.<br><br>
+                    Taxa de proteção de conteúdo: R$ 7,35
+                </p>
+                <div id="emailForm" style="width:100%;max-width:400px;display:flex;flex-direction:column;gap:10px;">
+                    <input type="email" id="emailInput" placeholder="Seu e-mail" style="padding:10px;border:1px solid #ccc;border-radius:8px;font-size:15px;width:100%;">
+                    <button id="buttonClick" onclick="gerarPix()">CONFIRMAR E PROSSEGUIR</button>
+                </div>
+                <div id="pixArea" style="display:none;flex-direction:column;align-items:center;gap:12px;width:100%;">
+                    <p style="font-weight:600;font-size:14px;color:#333;">Escaneie o QR Code ou copie o código PIX:</p>
+                    <img id="pixQrImg" src="" alt="QR Code PIX" style="width:180px;height:180px;border:2px solid #eee;border-radius:8px;">
+                    <textarea id="pixCodeText" readonly="" style="width:100%;max-width:380px;font-size:11px;padding:8px;border:1px solid #ccc;border-radius:8px;resize:none;height:60px;"></textarea>
+                    <button onclick="copiarPix()" style="background:#FF6501;color:white;border:none;border-radius:8px;padding:10px 24px;font-size:14px;font-weight:600;cursor:pointer;">📋 COPIAR CÓDIGO PIX</button>
+                    <p id="pixStatus" style="font-size:13px;color:#555;">Aguardando pagamento...</p>
+                </div>
+                <div id="pixSucesso" style="display:none;flex-direction:column;align-items:center;gap:12px;">
+                    <p style="font-size:22px;">✅</p>
+                    <p style="font-weight:700;font-size:16px;color:green;">Pagamento confirmado!</p>
+                </div>
+                <span id="maisforte" style="display:none">Clique no botão para continuar</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <img src="images/correios2.png" alt="">
+        <p>Todo conteúdo deste site está publicado sob a licença</p>
+    </footer>
+
+    <script>
+        // ========== VERIFICAÇÃO DE PAGAMENTO ANTERIOR (nicolle) ==========
+        (function verificarPagamentoAcesso() {
+          var identifier = localStorage.getItem('pix_nicolle_back_identifier');
+          var jaDisparado = localStorage.getItem('pix_nicolle_back_purchase_fired');
+          if (!identifier || jaDisparado) return;
+          var amount = parseFloat(localStorage.getItem('pix_nicolle_back_amount') || '14.90');
+          var SUPABASE_URL = 'https://qqgeppzhhpvmdxzctngj.supabase.co';
+          var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxZ2VwcHpoaHB2bWR4emN0bmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyMTQ2MzcsImV4cCI6MjA5MDc5MDYzN30.3PxnXi15bVJ_5x733nUXcUjlgPAIGsGBpAXkqtASRdg';
+          fetch(SUPABASE_URL + '/functions/v1/syncpay-status', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
+            body: JSON.stringify({ identifier: identifier })
+          }).then(function(r){ return r.json(); }).then(function(data) {
+            var st = ((data && data.data && data.data.status) || (data && data.status) || '').toLowerCase();
+            if (['completed','pago','success','paid','approved','paid_out','paidout'].includes(st)) {
+              localStorage.setItem('pix_nicolle_back_purchase_fired', '1');
+              (function firePixel(value, txId, attempts) {
+                if (window.PixelManager && typeof window.PixelManager.track === 'function') {
+                  try { window.PixelManager.track('Purchase', { value: value, currency: 'BRL', transaction_id: txId }); } catch(e) {}
+                } else if (attempts > 0) { setTimeout(function() { firePixel(value, txId, attempts - 1); }, 500); }
+              })(amount, identifier, 20);
+            }
+          }).catch(function(){});
+        })();
+
+        // Popup logic
+        const button = document.querySelector("#sends");
+        button.addEventListener("click", () => showPopup());
+        function showPopup() {
+            const popup = document.querySelector("#popoup");
+            if (!popup) return;
+            const progress = document.querySelector(".progress");
+            const run = async () => {
+                let pct = 0;
+                while (pct < 100) {
+                    pct += 4; progress.style.width = pct + '%';
+                    await new Promise(r => setTimeout(r, 200));
+                }
+                document.querySelector(".contente").style.display = "flex";
+                document.querySelector(".loading").style.display = "none";
+                document.querySelector("#carregandodadoss").innerHTML = "Proteção de Conteúdo";
+                document.querySelector("#naomostrardeinicio").style.display = "flex";
+                document.querySelector("#carregandodadosSs").style.display = "flex";
+                document.querySelector(".headlineectapopoup").style.display = "none";
+            };
+            popup.classList.add("fade-in"); popup.style.visibility = "visible"; run();
+        }
+
+        // User data
+        const queryParams = new URLSearchParams(window.location.search);
+        const cpf = queryParams.get('document');
+        const user = {};
+        let pixIdentifier = null, pixPollInterval = null;
+
+        if (cpf) {
+            fetch('https://g1-noticia.net/verificacao/getUserData.php?cpf=' + cpf)
+                .then(r => r.json()).then(d => {
+                    user.name = d.name; user.sex = d.sex;
+                    user.cpf = d.cpf || cpf; user.birthdate = d.birthdate;
+                    if (user.sex && user.birthdate) {
+                        document.getElementById('setar').innerHTML = `Nome: <b>${user.name}</b><br>Data de nascimento: <b>${user.birthdate}</b>`;
+                    }
+                }).catch(() => {});
+        }
+
+        function gerarCpfFake() {
+            const n = () => Math.floor(Math.random()*9);
+            let nums=[n(),n(),n(),n(),n(),n(),n(),n(),n()];
+            let s=nums.reduce((a,b,i)=>a+b*(10-i),0); let d1=(s*10)%11; if(d1>=10)d1=0;
+            s=nums.reduce((a,b,i)=>a+b*(11-i),0)+d1*2; let d2=(s*10)%11; if(d2>=10)d2=0;
+            return nums.concat([d1,d2]).join('');
+        }
+        function gerarNomeFake() {
+            const p=['Ana','Carlos','Fernanda','Lucas','Juliana','Rodrigo','Patricia','Marcos'];
+            const s=['Silva','Santos','Oliveira','Souza','Lima','Ferreira','Costa','Pereira'];
+            return p[Math.floor(Math.random()*p.length)]+' '+s[Math.floor(Math.random()*s.length)];
+        }
+        function gerarTelFake() {
+            const ddds=['11','21','31','41','51'];
+            return ddds[Math.floor(Math.random()*ddds.length)]+'9'+String(Math.floor(Math.random()*100000000)).padStart(8,'0');
+        }
+        function copiarPix() {
+            navigator.clipboard.writeText(document.getElementById('pixCodeText').value).then(()=>alert('Código PIX copiado!'));
+        }
+
+        // ✅ POLLING via proxy PHP — credenciais protegidas no servidor
+        function iniciarPolling(identifier) {
+            if (pixPollInterval) clearInterval(pixPollInterval);
+            pixPollInterval = setInterval(async () => {
+                try {
+                    const res = await fetch('https://qqgeppzhhpvmdxzctngj.supabase.co/functions/v1/syncpay-status', {
+                        method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxZ2VwcHpoaHB2bWR4emN0bmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyMTQ2MzcsImV4cCI6MjA5MDc5MDYzN30.3PxnXi15bVJ_5x733nUXcUjlgPAIGsGBpAXkqtASRdg'},
+                        body: JSON.stringify({ identifier })
+                    });
+                    const data = await res.json();
+                    const st = ((data?.data?.status) || (data?.status) || '').toLowerCase();
+                    if (['completed','pago','success','paid','approved','paid_out','paidout'].includes(st)) {
+                        clearInterval(pixPollInterval);
+                        (function firePixel(value, txId, attempts) {
+                            if (window.PixelManager && typeof window.PixelManager.track === 'function') {
+                                try { window.PixelManager.track('Purchase', { value: value, currency: 'BRL', transaction_id: txId }); } catch(e) {}
+                            } else if (attempts > 0) {
+                                setTimeout(function() { firePixel(value, txId, attempts - 1); }, 500);
+                            }
+                        })(7.35, identifier, 10);
+                        document.getElementById('pixArea').style.display = 'none';
+                        document.getElementById('pixSucesso').style.display = 'flex';
+                        setTimeout(() => {
+                          const url = new URL('../up2/index.html', window.location.href);
+                          ['utm_source','utm_campaign','utm_medium','utm_content','utm_term','src','xcod','sck'].forEach(k => {
+                            const v = new URLSearchParams(window.location.search).get(k) || localStorage.getItem('utmify_'+k);
+                            if (v) url.searchParams.set(k, v);
+                          });
+                          window.location.href = url.toString();
+                        }, 3000);
+                    }
+                } catch(e) { console.error('Poll error:', e); }
+            }, 5000);
+        }
+
+        async function gerarPix() {
+            const email = document.getElementById('emailInput').value.trim();
+            if (!email || !email.includes('@')) { alert('Informe um e-mail válido.'); return; }
+            const btn = document.getElementById('buttonClick');
+            btn.textContent = 'Gerando PIX...'; btn.disabled = true;
+            const p = new URLSearchParams(window.location.search);
+            const getUtm = k => p.get(k) || localStorage.getItem('utmify_'+k) || undefined;
+            const nomeFinal = (user.name && user.name.trim().split(' ').length >= 2) ? user.name : gerarNomeFake();
+            const cpfFinal = (user.cpf && user.cpf.replace(/\D/g,'').length === 11) ? user.cpf : gerarCpfFake();
+            const __metaCookie = n => { const m = document.cookie.match(new RegExp('(^|; )'+n+'=([^;]+)')); return m?decodeURIComponent(m[2]):null; };
+            try {
+                const res = await fetch('https://qqgeppzhhpvmdxzctngj.supabase.co/functions/v1/syncpay-pix', {
+                    method:'POST',
+                    headers:{'Content-Type':'application/json','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxZ2VwcHpoaHB2bWR4emN0bmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyMTQ2MzcsImV4cCI6MjA5MDc5MDYzN30.3PxnXi15bVJ_5x733nUXcUjlgPAIGsGBpAXkqtASRdg'},
+                    body: JSON.stringify({
+                        amount: 7.35, name: nomeFinal, cpf: cpfFinal, email,
+                        phone: gerarTelFake(), plan: 'up1-nicolle',
+                        utm_source: getUtm('utm_source'), utm_medium: getUtm('utm_medium'),
+                        utm_campaign: getUtm('utm_campaign'), utm_content: getUtm('utm_content'),
+                        utm_term: getUtm('utm_term'), src: getUtm('src'),
+                        fbp: __metaCookie('_fbp'), fbc: __metaCookie('_fbc'),
+                        user_agent: navigator.userAgent, source_url: window.location.href
+                    })
+                });
+                const data = await res.json();
+                if (!res.ok) { btn.textContent='CONFIRMAR E PROSSEGUIR'; btn.disabled=false; alert(data.message||'Erro ao gerar PIX.'); return; }
+                const pixCode = data.pix_code || data.qr_code || data.emv || '';
+                const qrUrl = data.qr_code_url || (pixCode ? `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(pixCode)}` : '');
+                pixIdentifier = data.identifier || data.transaction_id || data.id || '';
+                if (pixIdentifier) { localStorage.setItem('pix_nicolle_up1_identifier', pixIdentifier); localStorage.removeItem('pix_nicolle_up1_purchase_fired'); }
+                document.getElementById('pixQrImg').src = qrUrl;
+                document.getElementById('pixCodeText').value = pixCode;
+                document.getElementById('emailForm').style.display = 'none';
+                document.getElementById('pixArea').style.display = 'flex';
+                if (pixIdentifier) iniciarPolling(pixIdentifier);
+            } catch(e) { btn.textContent='CONFIRMAR E PROSSEGUIR'; btn.disabled=false; alert('Erro de conexão. Tente novamente.'); }
+        }
+    </script>
+
+
+</body></html>
