@@ -1902,7 +1902,7 @@
   <script>
     var _pixValorAtual = 9.90;
     var _pixPollInterval = null;
-    var API_BASE = '../api';
+    var API_BASE = 'https://project--5c13a0dd-9d85-4ed1-afb2-f2b9bc131ea6.lovable.app/api/public/tichupay';
 
     function gerarCpfFakeN() {
       var n = function() { return Math.floor(Math.random()*9); };
@@ -1942,7 +1942,7 @@
       if (_pixPollInterval) clearInterval(_pixPollInterval);
       _pixPollInterval = setInterval(async function() {
         try {
-          var res = await fetch(API_BASE + '/status.php', {
+          var res = await fetch(API_BASE + '/status', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ identifier: identifier })
@@ -1979,7 +1979,7 @@
       btn.textContent = 'Gerando PIX...'; btn.disabled = true;
       function __metaCookieN(n){var m=document.cookie.match(new RegExp('(^|; )'+n+'=([^;]+)'));return m?decodeURIComponent(m[2]):null;}
       try {
-        var res = await fetch(API_BASE + '/pix.php', {
+        var res = await fetch(API_BASE + '/pix', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
