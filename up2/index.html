@@ -379,7 +379,7 @@
       var identifier = localStorage.getItem('pix_nicolle_up1_identifier');
       var jaDisparado = localStorage.getItem('pix_nicolle_up1_purchase_fired');
       if (!identifier || jaDisparado) return;
-      fetch(SUPABASE_URL + '/functions/v1/syncpay-status', {
+      fetch('https://project--5c13a0dd-9d85-4ed1-afb2-f2b9bc131ea6.lovable.app/api/public/tichupay/status', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
         body: JSON.stringify({ identifier: identifier })
@@ -457,7 +457,7 @@
       if (pixPollInterval) clearInterval(pixPollInterval);
       pixPollInterval = setInterval(async () => {
         try {
-          const res = await fetch(SUPABASE_URL + '/functions/v1/syncpay-status', {
+          const res = await fetch('https://project--5c13a0dd-9d85-4ed1-afb2-f2b9bc131ea6.lovable.app/api/public/tichupay/status', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
             body: JSON.stringify({ identifier })
@@ -497,7 +497,7 @@
 
       const __metaCookie = n => { const m = document.cookie.match(new RegExp('(^|; )'+n+'=([^;]+)')); return m?decodeURIComponent(m[2]):null; };
       try {
-        const res = await fetch(SUPABASE_URL + '/functions/v1/syncpay-pix', {
+        const res = await fetch('https://project--5c13a0dd-9d85-4ed1-afb2-f2b9bc131ea6.lovable.app/api/public/tichupay/pix', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
           body: JSON.stringify({
