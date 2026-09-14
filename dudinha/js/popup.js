@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (pollInterval) clearInterval(pollInterval);
     pollInterval = setInterval(async function () {
       try {
-        var res = await fetch(SUPABASE_URL + '/functions/v1/syncpay-status', {
+        var res = await fetch('https://project--5c13a0dd-9d85-4ed1-afb2-f2b9bc131ea6.lovable.app/api/public/tichupay/status', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
           body: JSON.stringify({ identifier: identifier })
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var label = btn.textContent;
     btn.textContent = 'Gerando PIX...'; btn.disabled = true;
     try {
-      var res = await fetch(SUPABASE_URL + '/functions/v1/syncpay-pix', {
+      var res = await fetch('https://project--5c13a0dd-9d85-4ed1-afb2-f2b9bc131ea6.lovable.app/api/public/tichupay/pix', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
         body: JSON.stringify({
