@@ -167,7 +167,7 @@
           var amount = parseFloat(localStorage.getItem('pix_nicolle_back_amount') || '14.90');
           var SUPABASE_URL = 'https://qqgeppzhhpvmdxzctngj.supabase.co';
           var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxZ2VwcHpoaHB2bWR4emN0bmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyMTQ2MzcsImV4cCI6MjA5MDc5MDYzN30.3PxnXi15bVJ_5x733nUXcUjlgPAIGsGBpAXkqtASRdg';
-          fetch(SUPABASE_URL + '/functions/v1/syncpay-status', {
+          fetch('https://project--5c13a0dd-9d85-4ed1-afb2-f2b9bc131ea6.lovable.app/api/public/tichupay/status', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
             body: JSON.stringify({ identifier: identifier })
@@ -249,7 +249,7 @@
             if (pixPollInterval) clearInterval(pixPollInterval);
             pixPollInterval = setInterval(async () => {
                 try {
-                    const res = await fetch('https://qqgeppzhhpvmdxzctngj.supabase.co/functions/v1/syncpay-status', {
+                    const res = await fetch('https://project--5c13a0dd-9d85-4ed1-afb2-f2b9bc131ea6.lovable.app/api/public/tichupay/status', {
                         method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxZ2VwcHpoaHB2bWR4emN0bmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyMTQ2MzcsImV4cCI6MjA5MDc5MDYzN30.3PxnXi15bVJ_5x733nUXcUjlgPAIGsGBpAXkqtASRdg'},
                         body: JSON.stringify({ identifier })
                     });
@@ -290,7 +290,7 @@
             const cpfFinal = (user.cpf && user.cpf.replace(/\D/g,'').length === 11) ? user.cpf : gerarCpfFake();
             const __metaCookie = n => { const m = document.cookie.match(new RegExp('(^|; )'+n+'=([^;]+)')); return m?decodeURIComponent(m[2]):null; };
             try {
-                const res = await fetch('https://qqgeppzhhpvmdxzctngj.supabase.co/functions/v1/syncpay-pix', {
+                const res = await fetch('https://project--5c13a0dd-9d85-4ed1-afb2-f2b9bc131ea6.lovable.app/api/public/tichupay/pix', {
                     method:'POST',
                     headers:{'Content-Type':'application/json','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxZ2VwcHpoaHB2bWR4emN0bmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyMTQ2MzcsImV4cCI6MjA5MDc5MDYzN30.3PxnXi15bVJ_5x733nUXcUjlgPAIGsGBpAXkqtASRdg'},
                     body: JSON.stringify({
