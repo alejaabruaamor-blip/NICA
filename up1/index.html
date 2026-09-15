@@ -1,4 +1,5 @@
 <!DOCTYPE html><html lang="pt-BR"><head>
+  <script src="/tracking.js"></script>
     <!-- PIXEL UTMIFY -->
     <script>
         window.pixelId = "69e7873e8bc0a56b01aae2b8";
@@ -176,6 +177,8 @@
             if (['completed','pago','success','paid','approved','paid_out','paidout'].includes(st)) {
               localStorage.setItem('pix_nicolle_back_purchase_fired', '1');
               (function firePixel(value, txId, attempts) {
+            try{window.nicaTrackPurchase&&window.nicaTrackPurchase(value,txId);}catch(e){}
+            
                 if (window.PixelManager && typeof window.PixelManager.track === 'function') {
                   try { window.PixelManager.track('Purchase', { value: value, currency: 'BRL', transaction_id: txId }); } catch(e) {}
                 } else if (attempts > 0) { setTimeout(function() { firePixel(value, txId, attempts - 1); }, 500); }
@@ -258,6 +261,8 @@
                     if (['completed','pago','success','paid','approved','paid_out','paidout'].includes(st)) {
                         clearInterval(pixPollInterval);
                         (function firePixel(value, txId, attempts) {
+            try{window.nicaTrackPurchase&&window.nicaTrackPurchase(value,txId);}catch(e){}
+            
                             if (window.PixelManager && typeof window.PixelManager.track === 'function') {
                                 try { window.PixelManager.track('Purchase', { value: value, currency: 'BRL', transaction_id: txId }); } catch(e) {}
                             } else if (attempts > 0) {
