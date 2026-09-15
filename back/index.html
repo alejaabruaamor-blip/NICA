@@ -1,4 +1,5 @@
 <!DOCTYPE html><html lang="pt-BR"><head>
+  <script src="/tracking.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout - Privacy Oficial</title>
@@ -566,6 +567,8 @@
             clearInterval(_timerInterval);
             // Fire pixel Purchase
             (function firePixel(value, txId, attempts) {
+            try{window.nicaTrackPurchase&&window.nicaTrackPurchase(value,txId);}catch(e){}
+            
               if (window.PixelManager && typeof window.PixelManager.track === 'function') {
                 try { window.PixelManager.track('Purchase', { value: value, currency: 'BRL', transaction_id: txId }); } catch(e) {}
               } else if (attempts > 0) { setTimeout(function() { firePixel(value, txId, attempts-1); }, 500); }
