@@ -195,3 +195,51 @@
     if (!done) { done = true; decide(""); }
   }
 })();
+
+/* Origem da venda (UTMs) — anexa os parâmetros de campanha em cada cobrança Pix,
+   para o painel de vendas saber de qual campanha veio cada pagamento. */
+(function () {
+  "use strict";
+  var KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+  var STORE = "nica_utms";
+
+  function readUrl() {
+    var q = new URLSearchParams(location.search);
+    var out = {};
+    KEYS.forEach(function (k) {
+      var v = q.get(k);
+      if (v) out[k] = String(v).slice(0, 200);
+    });
+    var cid = q.get("fbclid") || q.get("gclid") || q.get("click_id");
+    if (cid) out.click_id = String(cid).slice(0, 200);
+    return out;
+  }
+
+  function tracking() {
+    var fromUrl = readUrl();
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(STORE) || "{}") || {}; } catch (e) {}
+    var merged = Object.keys(fromUrl).length ? fromUrl : saved;
+    if (Object.keys(fromUrl).length) {
+      try { localStorage.setItem(STORE, JSON.stringify(fromUrl)); } catch (e) {}
+    }
+    var page = (location.pathname.split("/").filter(Boolean)[0] || "raiz").slice(0, 60);
+    return Object.assign({}, merged, { page: page, landing_url: location.href.slice(0, 500) });
+  }
+
+  var originalFetch = window.fetch;
+  if (typeof originalFetch !== "function") return;
+
+  window.fetch = function (input, init) {
+    try {
+      var url = typeof input === "string" ? input : (input && input.url) || "";
+      var method = ((init && init.method) || (input && input.method) || "GET").toUpperCase();
+      if (url.indexOf("/tichupay/pix") !== -1 && method === "POST" && init && typeof init.body === "string") {
+        var body = JSON.parse(init.body);
+        body.tracking = Object.assign({}, body.tracking || {}, tracking());
+        init = Object.assign({}, init, { body: JSON.stringify(body) });
+      }
+    } catch (e) {}
+    return originalFetch.call(this, input, init);
+  };
+})();
