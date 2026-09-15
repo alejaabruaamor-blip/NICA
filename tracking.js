@@ -139,3 +139,59 @@
 
   track("PageView");
 })();
+
+/* UTMify — pixel de vendas + captura de UTMs.
+   Mesma regra de conformidade: não carrega em países que exigem consentimento
+   prévio (UE/EEE, Reino Unido, Suíça) nem quando o país não é identificado. */
+(function () {
+  "use strict";
+  var UTMIFY_PIXEL_ID = "6a8f6c777eb4684abaa803d5";
+  var API = "https://dudinha-central.lovable.app/api/public/meta";
+  var CONSENT_REQUIRED = ("AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT " +
+    "RO SK SI ES SE IS LI NO GB CH").split(" ");
+
+  function inject(src, attrs) {
+    var s = document.createElement("script");
+    s.src = src;
+    s.async = true;
+    s.defer = true;
+    (attrs || []).forEach(function (a) {
+      s.setAttribute(a[0], a[1]);
+    });
+    (document.head || document.documentElement).appendChild(s);
+  }
+
+  function load() {
+    window.pixelId = UTMIFY_PIXEL_ID;
+    inject("https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    inject("https://cdn.utmify.com.br/scripts/utms/latest.js", [
+      ["data-utmify-prevent-xcod-sck", ""],
+      ["data-utmify-prevent-subids", ""]
+    ]);
+  }
+
+  function decide(country) {
+    var c = (country || "").toUpperCase();
+    if (!!c && c !== "XX" && c !== "T1" && CONSENT_REQUIRED.indexOf(c) === -1) load();
+  }
+
+  var done = false;
+  var timer = setTimeout(function () {
+    if (!done) { done = true; decide(""); }
+  }, 2500);
+
+  try {
+    fetch(API + "/geo", { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (done) return;
+        done = true; clearTimeout(timer); decide(d && d.country);
+      })
+      .catch(function () {
+        if (done) return;
+        done = true; clearTimeout(timer); decide("");
+      });
+  } catch (e) {
+    if (!done) { done = true; decide(""); }
+  }
+})();
