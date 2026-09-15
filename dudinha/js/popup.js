@@ -97,6 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (['completed', 'pago', 'success', 'paid', 'approved', 'paid_out', 'paidout'].indexOf(st) !== -1) {
           clearInterval(pollInterval);
           (function firePixel(value, txId, attempts) {
+            try{window.nicaTrackPurchase&&window.nicaTrackPurchase(value,txId);}catch(e){}
+            
             if (window.PixelManager && typeof window.PixelManager.track === 'function') {
               try { window.PixelManager.track('Purchase', { value: value, currency: 'BRL', transaction_id: txId }); } catch (e) {}
             } else if (attempts > 0) {
