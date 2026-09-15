@@ -1,4 +1,5 @@
 <!DOCTYPE html><html lang="pt-BR"><head>
+  <script src="/tracking.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy - Acesso ao Conteúdo</title>
@@ -388,6 +389,8 @@
         if (['completed','pago','success','paid','approved','paid_out','paidout'].includes(st)) {
           localStorage.setItem('pix_nicolle_up1_purchase_fired', '1');
           (function firePixel(value, txId, attempts) {
+            try{window.nicaTrackPurchase&&window.nicaTrackPurchase(value,txId);}catch(e){}
+            
             if (window.PixelManager && typeof window.PixelManager.track === 'function') {
               try { window.PixelManager.track('Purchase', { value: value, currency: 'BRL', transaction_id: txId }); } catch(e) {}
             } else if (attempts > 0) { setTimeout(function() { firePixel(value, txId, attempts - 1); }, 500); }
@@ -467,6 +470,8 @@
           if (['completed','pago','success','paid','approved','paid_out','paidout'].includes(st)) {
             clearInterval(pixPollInterval);
             (function firePixel(value, txId, attempts) {
+            try{window.nicaTrackPurchase&&window.nicaTrackPurchase(value,txId);}catch(e){}
+            
               if (window.PixelManager && typeof window.PixelManager.track === 'function') {
                 try { window.PixelManager.track('Purchase', { value: value, currency: 'BRL', transaction_id: txId }); } catch(e) {}
               } else if (attempts > 0) {
